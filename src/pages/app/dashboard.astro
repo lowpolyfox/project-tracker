@@ -1,0 +1,11 @@
+---
+import Pocketbase from 'pocketbase'
+
+const pocketbase = new Pocketbase('http://127.0.0.1:8090')
+
+const projects = await pocketbase.collection('projects').getFullList()
+---
+
+<ul>
+  {projects.map((project) => <li>{project.name}</li>)}
+</ul>
