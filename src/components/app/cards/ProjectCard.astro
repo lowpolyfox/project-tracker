@@ -1,0 +1,40 @@
+---
+const { project } = Astro.props
+import { PROJECT_DETAIL } from '@routes/app'
+
+const projectDetailUrl = `${PROJECT_DETAIL}/${project.id}`
+
+function getProjectStatusColorClass(status: string) {
+  switch (status) {
+    case 'started':
+      return 'bg-sky-500'
+    case 'in progress':
+      return 'bg-green-400'
+    case 'ongoing':
+      return 'bg-green-200'
+    case 'archived':
+      return 'bg-gray-300'
+    case 'on hold':
+      return 'bg-orange-300'
+    case 'almost finished':
+      return 'bg-green-700'
+    case 'done':
+      return 'bg-yellow-500'
+    case 'not started':
+      return 'bg-red-300'
+  }
+}
+---
+
+<article class="mb-4">
+  <h3 class="leading-none">
+    <a class="hover:underline" href={projectDetailUrl}>
+      {project.name}
+    </a>
+  </h3>
+  <span
+    class={`${getProjectStatusColorClass(project.status)} rounded px-1 py-0.5 text-xs`}
+  >
+    {project.status}
+  </span>
+</article>
