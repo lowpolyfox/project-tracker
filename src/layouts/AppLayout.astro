@@ -12,6 +12,18 @@ const title = pageTitle ? `${pageTitle} · ${SITE_TITLE}` : SITE_TITLE
     <meta name="viewport" content="width=device-width" />
     <title>{title}</title>
     <meta name="description" content="A project management tool" />
+    <script>
+      import * as htmx from 'htmx.org'
+
+      declare global {
+        interface Window {
+          htmx: any
+        }
+      }
+
+      window.htmx = htmx
+      htmx.process(document.body)
+    </script>
   </head>
 
   <body>
